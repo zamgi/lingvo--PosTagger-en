@@ -1,46 +1,37 @@
 # lingvo--PosTagger-ru
 
-<a target="_blank" href="http://pos-ru.apphb.com/index.html">[ live demo ]</a>
+<a target="_blank" href="http://pos-en.apphb.com/index.html">[ live demo ]</a>
 
 <div style="padding: 20px">
-    <p>
-    Нормализацией текста называется приведение всех слов текста к словарной форме: к именительному падежу, единственному числу (если таковое есть) или инфинитиву для глаголов.
-    <br/>
-	Нормализация нужна, например, для быстрого поиска слова в словарях, синтаксического и семантического разбора текста. 
-	Эта процедура особенно актуальна для языков грамматической группы как, например, русский или финский, у которых богатая морфология (сильные словоизменения в следствии грамматической вариативности).
-	<br/>
-	Нормализация бывает как со снятием омонимии, так и без нее. 
-	(Омонимия – совпадение слов, семантические значения которых не связаны: например, 
-	слово «(в) коме» - нормализуется в два разных слова: «ком» и «кома», 
-	«начала» - глагол «начать» и существительное «начало», 
-	имя «Путине» (местный падеж) может иметь три формы «Путин», «Путина» и «путина»,  и т.д.).
-	Снятие омонимии означает, что определенным алгоритмом выбирается одно слово из множества предлагаемых морфословарем.
-	<br/>
-	Снятие омонимии – дело трудоемкое и дорогостоящее по времени и ресурсам. 
-	Поэтому ее не так часто используют в системах обработки текста, а обходятся «стеммингом» - приведением слова к нормальной форме по его окончанию. 
-	В таком случае выбор нормальной формы из множества происходит случайным образом. 
-	<br/>
-	Омонимия не столь редкое явление, как кажется. 
-	И иногда отсутствие процедуры снятия омонимии может серьезно испортить репутацию системы 
-	(например, достаточно частотное местоимение «мой» может нормализоваться в глагол «мыть», предлог "после" - в существительное "посла", 
-	а существительное, имя собственное «маша» - в глагол «махать»). 
-	В целом, практически каждое слово за исключением наречий и междометий может иметь тот или иной вид омонимии 
-	(лексическую, грамматическую, графическую), поэтому снятие омонимии – важный этап для качественной обработки текста.
-	<br/>
-	Методы снятия омонимии различны. Основой большинства из них служит морфологический и частиречный анализ каждого слова с последующим наложением правил согласования и  управления.   
-	</p>
-    <p>
-	Особенностью данной системы является то, что в нем задействована вся последовательность лингвистической обработки текста:
-	</p><ul style="margin-left: 25px">
-		<li> - текст разбивается на предложения;
-		</li><li> - определяются части речи всех слов текста (так называемый PoS-tagging  - Part-of-Speech tagging);
-		</li><li> - находятся морфохарактеристики всех слов;
-		</li><li> - снимается омонимия;
-	</li></ul>						
-	<p>Конечное качество определяется всеми этапами обработки и определяется как морфологическими словарями, так и статистическими моделями.
-	Это позволяет достичь хороших результатов нормализации по соотношению скорость / качество.
-	</p>
-	<p>
-	Скорость обработки текста данной системой составляет порядка 350 кБайт/сек.
-	</p>
+    <div>
+        <p>
+        Normalization of text is called to bring all the words of the text to the dictionary form: in the nominative case, a single number (if any) or the infinitive for verbs.
+        <br/>
+	    Normalization is necessary, for example, to quickly find words in dictionaries, syntactic and semantic analysis of the text.
+        This procedure is especially important for language grammatical groups, such as russian or finnish, whose rich morphology (strong inflection in the investigation of the grammatical variation).
+	    </p><p>
+	    Normalization is a disambiguation with and without it.
+	    (Homonymy - Match words, the semantic values which does not involve).
+	    Disambiguation means that a particular algorithm selected one word from the set of proposed morfoslovarem.
+	    <br/>
+	    Disambiguation - it time-consuming and costly in time and resources.
+        Therefore, it is not often used in text processing systems, and cost "Stemming" - bringing the words to a normal form by the end of it.
+        In this case, selecting from a plurality of normal form is random.
+	    <br/>
+	    Methods disambiguation different. The basis of most of them is the morphological and chastirechny analysis of each word, followed by the imposition of the rules of coordination and management.
+	    </p><p>
+	    A special feature of this module is that it involves the entire sequence of linguistic processing of text:
+	    <ul style="margin-left: 25px">
+		    <li> - the text is divided into proposals;
+		    <li> - defined parts of speech of words of text (called PoS-tagging - Part-of-Speech tagging);
+		    <li> - morphological characteristics are all words;
+		    <li> - removed homonymy;
+	    </ul>
+	    The final quality is determined by all processing steps and is defined as the morphological dictionaries, and statistical models.
+        This makes it possible to achieve good results on the normalization of the relationship speed / quality.
+	    </p>
+	    <p>
+	    The processing speed of this module is about 350 KB/sec.
+	    </p>
+    </div>
 </div>
