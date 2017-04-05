@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 using lingvo.core;
 
 namespace lingvo.morphology
 {
-	/// <summary>
+    /// <summary>
     /// Морфо-модель
-	/// </summary>
+    /// </summary>
     internal sealed class MorphoModel : MorphoModelBase, IMorphoModel
 	{
         /// словарь слов
