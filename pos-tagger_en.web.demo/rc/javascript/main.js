@@ -200,7 +200,7 @@ $(document).ready(function () {
 
     function processing_start(){
         $('#text').addClass('no-change').attr('readonly', 'readonly').attr('disabled', 'disabled');
-        $('.result-info').show().removeClass('error').text('Processing... <label id="processingTickLabel"></label>');
+        $('.result-info').show().removeClass('error').html('Processing... <label id="processingTickLabel"></label>');
         $('#processButton').addClass('disabled');
         $('#processResult tbody').empty();
         setTimeout(processing_tick, 1000);
