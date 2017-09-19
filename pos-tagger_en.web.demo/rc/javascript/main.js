@@ -50,8 +50,14 @@ $(document).ready(function () {
         if (!text || !text.length) {
             text = DEFAULT_TEXT;
         }
-        $('#text').text(text).focus();
+        $('#text').val(text).focus();
     })();
+    $('#resetText2Default').click(function () {
+        $("#text").val('');
+        setTimeout(function () {
+            $("#text").val(DEFAULT_TEXT).focus();
+        }, 100);
+    });
 
     $('#detailedView').click(function () {
         var $detailedView = $('#detailedView');
