@@ -261,7 +261,7 @@ namespace lingvo.postagger
 
                     #if DEBUG
                         var wordFirstCharIsUpper = (*(_CTM + word.valueOriginal[ 0 ]) & CharType.IsUpper) == CharType.IsUpper;
-                        Debug.Assert( wordFirstCharIsUpper == word.posTaggerFirstCharIsUpper, "(wordFirstCharIsUpper != word.posTaggerFirstCharIsUpper)" );
+                        System.Diagnostics.Debug.Assert( wordFirstCharIsUpper == word.posTaggerFirstCharIsUpper, "(wordFirstCharIsUpper != word.posTaggerFirstCharIsUpper)" );
                     #endif
 
                         var mode = GetWordFormMorphologyMode( word, i );
