@@ -1,6 +1,6 @@
 del "*.suo" /S/Q/F/A
 del "*.csproj.user" /S/Q/F/A
-del "pos-tagger_en.web.demo\bin\*.pdb" /Q
+rd "pos-tagger_en.web.demo\bin" /S/Q
 rd "pos-tagger_en.web.demo\obj" /S/Q
 rd "pos-tagger_en.web.demo\(logs)" /S/Q
 rd "captcha\bin" /S/Q
