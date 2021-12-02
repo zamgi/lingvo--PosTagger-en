@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using lingvo.core;
 
 namespace lingvo.morphology
 {
-    /// <summary>
+	/// <summary>
     /// Морфо-модель
-    /// </summary>
+	/// </summary>
     internal sealed class MorphoModel : MorphoModelBase, IMorphoModel
 	{
         /// словарь слов
         private readonly ITreeDictionary _TreeDictionary;
 
-        public MorphoModel( MorphoModelConfig config ) : base( config )
+        public MorphoModel( in MorphoModelConfig config ) : base( in config )
         {
             switch ( config.TreeDictionaryType )
             {
@@ -30,15 +31,13 @@ namespace lingvo.morphology
                     throw (new ArgumentException(config.TreeDictionaryType.ToString()));
             }
 
-            Initialization( config );
+            Initialization( in config );
         }
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
 
         #region [.loading model.]
-		/// морфо-типы
-		private Dictionary< string, MorphoType >       _MorphoTypesDictionary;
+        /// морфо-типы
+        private Dictionary< string, MorphoType >       _MorphoTypesDictionary;
         /// список допустимых комбинаций морфо-аттрибутов в группах 
         private MorphoAttributeList                    _MorphoAttributeList;
         private PartOfSpeechList                       _PartOfSpeechList;
@@ -56,7 +55,7 @@ namespace lingvo.morphology
 
 		/// инициализация морфо-модели
 		/// информация для инициализации морфо-модели
-		private void Initialization( MorphoModelConfig config )
+		private void Initialization( in MorphoModelConfig config )
 		{
             #region [.init field's.]
             base.Initialization();
@@ -236,19 +235,6 @@ namespace lingvo.morphology
                     }
                     _TreeDictionary.AddWord( word, morphoType, _nounType );
                 }
-                #region commented
-                //}
-                //catch (UnknownMorphoTypeException)
-                //{
-                //    CMorphoModel::Logging("Unknown MorphoType", str);
-                //    m_isInitialized = false;
-                //}
-                //catch (WrongPartOfSpeechException)
-                //{
-                //    CMorphoModel::Logging("Wrong PartOfSpeech", str);
-                //    m_isInitialized = false;
-                //} 
-                #endregion
 			}
 		}
 
@@ -342,15 +328,15 @@ namespace lingvo.morphology
         #endregion
 
         #region [.IMorphoModel.]
-        public bool GetWordFormMorphologies( string wordUpper, List< WordFormMorphology_t > result, WordFormMorphologyModeEnum wordFormMorphologyMode )
+        public bool TryGetWordFormMorphologies( string wordUpper, ICollection< WordFormMorphology_t > result, WordFormMorphologyModeEnum wordFormMorphologyMode )
         {
             return (_TreeDictionary.GetWordFormMorphologies( wordUpper, result, wordFormMorphologyMode ));
         }
-        unsafe public bool GetWordFormMorphologies( char* wordUpper, List< WordFormMorphology_t > result, WordFormMorphologyModeEnum wordFormMorphologyMode )
+        unsafe public bool TryGetWordFormMorphologies( char* wordUpper, ICollection< WordFormMorphology_t > result, WordFormMorphologyModeEnum wordFormMorphologyMode )
         {
             return (_TreeDictionary.GetWordFormMorphologies( wordUpper, result, wordFormMorphologyMode ));
         }
-        public bool GetWordForms( string wordUpper, List< WordForm_t > result )
+        public bool TryGetWordForms( string wordUpper, ICollection< WordForm_t > result )
         {
             return (_TreeDictionary.GetWordForms( wordUpper, result ));
         }
