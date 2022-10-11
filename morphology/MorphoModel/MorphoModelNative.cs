@@ -93,7 +93,7 @@ namespace lingvo.morphology
                 }
             }
 
-            public IntPtr this[ PartOfSpeechEnum partOfSpeech ] => _Dictionary[ partOfSpeech ];
+            public IntPtr this[ PartOfSpeechEnum partOfSpeech ] { [M(O.AggressiveInlining)] get => _Dictionary[ partOfSpeech ]; }
         }
 
         /// <summary>
@@ -231,9 +231,8 @@ namespace lingvo.morphology
 #if DEBUG
                 var sw = new Stopwatch();
 # endif
-                foreach ( var morphoTypesFilename in _Config.MorphoTypesFilenames )
+                foreach ( var filename in _Config.MorphoTypesFilenames )
                 {
-                    var filename = GetFullFilename( _Config.BaseDirectory, morphoTypesFilename );
 #if DEBUG
                     sw.Restart(); 
 #endif
@@ -243,9 +242,8 @@ namespace lingvo.morphology
 #endif
                 }
 
-                foreach ( var properNamesFilename in _Config.ProperNamesFilenames )
+                foreach ( var filename in _Config.ProperNamesFilenames )
                 {
-                    var filename = GetFullFilename( _Config.BaseDirectory, properNamesFilename );
 #if DEBUG
                     sw.Restart(); 
 #endif
@@ -255,9 +253,8 @@ namespace lingvo.morphology
 #endif
                 }
 
-                foreach ( var commonFilename in _Config.CommonFilenames )
+                foreach ( var filename in _Config.CommonFilenames )
                 {
-                    var filename = GetFullFilename( _Config.BaseDirectory, commonFilename );
 #if DEBUG
                     sw.Restart(); 
 #endif
