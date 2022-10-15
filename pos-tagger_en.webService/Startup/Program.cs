@@ -10,8 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.EventLog;
 
 using captcha;
-using lingvo.morphology;
-using lingvo.sentsplitting;
+using lingvo.tokenizing;
 
 namespace lingvo.postagger.webService
 {
@@ -30,7 +29,7 @@ namespace lingvo.postagger.webService
             {
                 //---------------------------------------------------------------//
                 var opts = new Config();
-                using var env = await PosTaggerEnvironment.CreateAsync( opts ).CAX();
+                using var env = await PosTaggerEnvironment.CreateAsync( opts, LanguageTypeEnum.En ).CAX();
 
                 using var concurrentFactory = new ConcurrentFactory( env, opts );
                 //---------------------------------------------------------------//

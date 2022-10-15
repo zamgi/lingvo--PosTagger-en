@@ -49,7 +49,7 @@ namespace lingvo.postagger
         public abstract string MORPHO_AMBIGUITY_TEMPLATE_FILENAME_3G { get; }        
 
 
-        public (PosTaggerProcessorConfig config, SentSplitterConfig sentSplitterConfig) CreatePosTaggerProcessorConfig( LanguageTypeEnum languageType = LanguageTypeEnum.En )
+        public (PosTaggerProcessorConfig config, SentSplitterConfig sentSplitterConfig) CreatePosTaggerProcessorConfig( LanguageTypeEnum languageType )
         {
             var sentSplitterConfig = new SentSplitterConfig( SENT_SPLITTER_RESOURCES_XML_FILENAME, URL_DETECTOR_RESOURCES_XML_FILENAME );
             var config = new PosTaggerProcessorConfig( TOKENIZER_RESOURCES_XML_FILENAME, POSTAGGER_RESOURCES_XML_FILENAME, languageType, sentSplitterConfig )

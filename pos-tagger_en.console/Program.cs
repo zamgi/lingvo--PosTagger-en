@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Configuration;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -37,10 +33,9 @@ namespace lingvo.postagger
             catch ( Exception ex )
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine( Environment.NewLine + ex + Environment.NewLine );
+                Console.WriteLine( ex );
                 Console.ResetColor();
             }
-
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine( "  [.......finita fusking comedy.......]" );
             Console.ReadLine();
@@ -48,7 +43,7 @@ namespace lingvo.postagger
 
         private static async Task ProcessText( PosTaggerEnvironmentConfigBase opts, string text )
         {
-            using ( var env = await PosTaggerEnvironment.CreateAsync( opts ).CAX() )
+            using ( var env = await PosTaggerEnvironment.CreateAsync( opts, LanguageTypeEnum.En ).CAX() )
             using ( var posTaggerProcessor = env.CreatePosTaggerProcessor() )
             {
                 Console.WriteLine( "\r\n-------------------------------------------------\r\n text: '" + text + '\'' );
@@ -80,7 +75,7 @@ namespace lingvo.postagger
         //=============== Only PoS-Tagger (without Morphology) ===============//
         private static void ProcessText_without_Morphology( PosTaggerEnvironmentConfigBase opts, string text )
         {
-            var (config, ssc) = opts.CreatePosTaggerProcessorConfig();
+            var (config, ssc) = opts.CreatePosTaggerProcessorConfig( LanguageTypeEnum.En );
 
             using ( ssc )
             using ( var tokenizer = new Tokenizer( config.TokenizerConfig ) )

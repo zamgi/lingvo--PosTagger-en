@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using lingvo.morphology;
 using lingvo.sentsplitting;
+using lingvo.tokenizing;
 
 namespace lingvo.postagger
 {
@@ -41,7 +42,7 @@ namespace lingvo.postagger
 
         public PosTaggerProcessor CreatePosTaggerProcessor() => new PosTaggerProcessor( PosTaggerProcessorConfig, MorphoModel, MorphoAmbiguityResolverModel );
 
-        public static PosTaggerEnvironment Create( PosTaggerEnvironmentConfigBase opts, bool print2Console = true )
+        public static PosTaggerEnvironment Create( PosTaggerEnvironmentConfigBase opts, LanguageTypeEnum languageType, bool print2Console = true )
         {
             var sw = default(Stopwatch);
             if ( print2Console )
@@ -53,7 +54,7 @@ namespace lingvo.postagger
             var morphoAmbiguityModel   = opts.CreateMorphoAmbiguityResolverModel();
             var morphoModelConfig      = opts.CreateMorphoModelConfig();
             var morphoModel            = MorphoModelFactory.Create( morphoModelConfig );
-            var (posTaggerConfig, ssc) = opts.CreatePosTaggerProcessorConfig();
+            var (posTaggerConfig, ssc) = opts.CreatePosTaggerProcessorConfig( languageType );
 
             var posEnv = new PosTaggerEnvironment()
             {
@@ -71,7 +72,7 @@ namespace lingvo.postagger
 
             return (posEnv);
         }
-        public static async Task< PosTaggerEnvironment > CreateAsync( PosTaggerEnvironmentConfigBase opts, bool print2Console = true )
+        public static async Task< PosTaggerEnvironment > CreateAsync( PosTaggerEnvironmentConfigBase opts, LanguageTypeEnum languageType, bool print2Console = true )
         {
             var sw = default(Stopwatch);
             if ( print2Console )
@@ -83,7 +84,7 @@ namespace lingvo.postagger
             var morphoModelConfig         = opts.CreateMorphoModelConfig();
             var morphoAmbiguityModel_task = Task.Run( () => opts.CreateMorphoAmbiguityResolverModel() );                
             var morphoModel_task          = Task.Run( () => MorphoModelFactory.Create( morphoModelConfig ) );
-            var config_task               = Task.Run( () => opts.CreatePosTaggerProcessorConfig() );
+            var config_task               = Task.Run( () => opts.CreatePosTaggerProcessorConfig( languageType ) );
 
             await Task.WhenAll( morphoAmbiguityModel_task, morphoModel_task, config_task ).ConfigureAwait( false );
 
