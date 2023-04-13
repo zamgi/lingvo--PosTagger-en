@@ -57,7 +57,7 @@ namespace lingvo.postagger
     /// </summary>
     internal static class PosTaggerEnvironmentConfigExtensions
     {
-        public static string GetPath( this string relPath, string basePath ) => Path.Combine( basePath, relPath?.TrimStart( '/', '\\' ) );
+        public static string GetPath( this string relPath, string basePath ) => Path.Combine( basePath ?? string.Empty, relPath?.TrimStart( '/', '\\' ) );
         public static string[] ToFilesArray( this string value ) => value.Split( new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries ).Select( f => f.Trim() ).ToArray();
     }
 }
